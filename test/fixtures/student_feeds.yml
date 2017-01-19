@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rollno: MyString
+  email: MyString
+  year: 1
+  feeback: MyText
+  companyname: MyString
+  company_id: 1
+  company_id: 
+
+two:
+  rollno: MyString
+  email: MyString
+  year: 1
+  feeback: MyText
+  companyname: MyString
+  company_id: 1
+  company_id: 

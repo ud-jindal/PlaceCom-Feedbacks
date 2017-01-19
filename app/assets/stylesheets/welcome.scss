@@ -1,0 +1,21 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+	font-size: 2em;
+	background-color: #ADD8E6;
+}
+
+.main-head{
+	font-size: 2.5em;
+	margin-bottom: 50px;
+	color: #0000A0;
+}
+
+.row button{
+	border:1px solid #0000A0;
+}
+.row button a{
+	font-size: 1.75em;
+	text-decoration: none;
+}

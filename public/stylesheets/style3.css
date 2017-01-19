@@ -1,0 +1,10 @@
+
+.company-filter{
+	width: 45%;
+}
+ 
+.feedbacktable{
+	max-height: 10px;
+	color:white;
+	overflow-y: hidden;
+}
