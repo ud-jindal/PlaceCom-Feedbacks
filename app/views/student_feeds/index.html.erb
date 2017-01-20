@@ -1,3 +1,24 @@
-<p id="notice"><%= notice %></p>
+
+<tbody>
+	<p id="notice"><%= notice %></p>
+<% @studentfeeds.each do |studentfeed| %>
+	<tr>
+	<p>
+  <strong>Rollno.:</strong>
+  <%= studentfeed.rollno %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= studentfeed.companyname %>
+</p>
+
+<p>
+  <strong>feedback:</strong>
+  <%= studentfeed.feeback %>
+</p>
+	</tr>
+<% end %>
+</tbody>
 
 <%= link_to 'New StudentFeed', new_student_feed_path %>

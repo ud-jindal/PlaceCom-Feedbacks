@@ -1,6 +1,6 @@
 class StudentFeedsController < ApplicationController
   def index
-    @students= StudentFeed.all
+    @studentfeeds= StudentFeed.all
   end
   def new
     @studentfeed= StudentFeed.new
@@ -13,7 +13,6 @@ class StudentFeedsController < ApplicationController
       if @studentfeed.save
         @studentfeed.companyname= Company.find(@studentfeed.company_id).compname
         @studentfeed.save
-        #redirect_to :action => 'index'
         format.html { redirect_to :action =>'index', notice: 'User was successfully created.' }
         #format.json { render :index, status: :created, location: @user }
       else
