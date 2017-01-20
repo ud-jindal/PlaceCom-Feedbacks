@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'student_feeds/index'
+  get 'company_reviews/index'
   resources :student_feeds
   
   resources :company_reviews

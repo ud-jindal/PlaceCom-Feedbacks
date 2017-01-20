@@ -1,0 +1,20 @@
+<tbody>
+<% @companyreviews.each do |companyreview| %>
+	<tr>
+	<p>
+  <strong>Company:</strong>
+  <%= companyreview.name %>
+</p>
+
+<p>
+  <strong>year:</strong>
+  <%= companyreview.year %>
+</p>
+
+<p>
+  <strong>feedback:</strong>
+  <%= companyreview.feedback %>
+</p>
+	</tr>
+<% end %>
+</tbody>

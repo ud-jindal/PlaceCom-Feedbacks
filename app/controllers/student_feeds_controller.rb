@@ -1,4 +1,5 @@
 class StudentFeedsController < ApplicationController
+  before_action :set_studentfeed, only: [:show]  
   def index
     @studentfeeds= StudentFeed.all
   end
@@ -25,7 +26,11 @@ class StudentFeedsController < ApplicationController
   def show
   end
 
-  private def post_params
+  private
+  def set_studentfeed
+    @studentfeed= StudentFeed.find(params[:id]) 
+  end
+  def post_params
   	params.require(:student_feed).permit(:rollno, :email, :year, :feeback, :company_id  )
   end
 
