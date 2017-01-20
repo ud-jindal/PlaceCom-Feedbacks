@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'student_feeds/index'
   get 'company_reviews/index'
   resources :student_feeds
