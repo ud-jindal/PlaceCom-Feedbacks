@@ -11,6 +11,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.integer :compensation_to_tier1
       t.text :remark
       t.boolean :established_startup
+      t.string :iiitb_share
       t.timestamps null: false
     end
   end

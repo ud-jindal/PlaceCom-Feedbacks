@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170119135129) do
     t.integer  "compensation_to_tier1", limit: 4
     t.text     "remark",                limit: 65535
     t.boolean  "established_startup"
+    t.string   "iiitb_share",           limit: 255
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
