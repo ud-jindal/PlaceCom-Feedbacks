@@ -4,6 +4,6 @@ class StudentFeed < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :year, presence: true, 
   			length: {is: 4}
-  validates :feedback, presence: true
-  validates :companyname, inclusion: {in Article.all}			
+  validates :feeback, presence: true
+  #validates :companyname, inclusion: {in Article.all}			
 end

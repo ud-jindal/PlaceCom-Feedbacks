@@ -14,13 +14,18 @@
 ActiveRecord::Schema.define(version: 20170119135129) do
 
   create_table "companies", force: :cascade do |t|
-    t.string   "compname",    limit: 255
-    t.string   "contactname", limit: 255
-    t.string   "email",       limit: 255
-    t.integer  "phone",       limit: 4
-    t.text     "remark",      limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "compname",              limit: 255
+    t.string   "contactname",           limit: 255
+    t.string   "email",                 limit: 255
+    t.string   "phone",                 limit: 255
+    t.string   "domain",                limit: 255
+    t.integer  "years",                 limit: 4
+    t.integer  "rating",                limit: 4
+    t.integer  "compensation_to_tier1", limit: 4
+    t.text     "remark",                limit: 65535
+    t.boolean  "established_startup"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "company_reviews", force: :cascade do |t|
