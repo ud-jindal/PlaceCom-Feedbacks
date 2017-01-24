@@ -1,9 +1,63 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 body{
+	background: #ADD8E6;
 	font-size: 2em;
-	background-color: #ADD8E6;
+}
+
+#header-nav{
+	background: white;
+	border: 0px;
+	border-radius: 0px;
+}
+
+#logo-img{
+	width: 200px;
+	height: 200px;
+	margin: 10px 15px 10px 0px;
+}
+
+.navbar-brand{
+	padding-top: 100px;
+}
+
+.navbar-brand h1{
+	font-size: 2em;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-top:0px;
+	margin-bottom:0px;
+	text-shadow: 1px 1px 4px #222;   
+}
+
+.navbar-brand a:hover ,.navbar-brand a:focus{
+	text-decoration: none;
+} 
+
+#nav-list{
+	padding-top: 10px;
+}
+
+#nav-list a{
+	color: blue;
+	text-align:center;
+	font-size: 1.5em;
+}
+
+#nav-list a:hover{
+	background: #E7E7E7;
+}
+
+.navbar-header button.navbar-toggle , .navbar-header .icon-bar{
+	border:1px solid black;
+}
+
+.navbar-header button.navbar-toggle{
+	clear: both;
+	margin-top: -30px;
 }
 
 .main-head{
@@ -15,7 +69,21 @@ body{
 .row button{
 	border:1px solid #0000A0;
 }
+
+#last_mainpage_btn{
+	margin-bottom:250px;
+}
 .row button a{
 	font-size: 1.75em;
 	text-decoration: none;
+}
+
+@media (max-width: 767px){
+	.navbar-brand h1{
+		font-size: 1.5em;
+	}
+}
+
+#copyright{
+	line-height: 50px;
 }
