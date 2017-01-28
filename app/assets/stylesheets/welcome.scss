@@ -3,8 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body{
-	background: #ADD8E6;
+	background: #D3D3D3;
 	font-size: 2em;
+}
+
+.container{
+	margin-left:5px;
+	margin-right:0px;
 }
 
 #header-nav{
@@ -24,13 +29,15 @@ body{
 }
 
 .navbar-brand h1{
-	font-size: 2em;
+	font-size: 3em;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-top:0px;
 	margin-bottom:0px;
-	text-shadow: 1px 1px 4px #222;   
+	text-shadow: 1px 1px 4px #222;
+	color: #00519C;
+	font-weight:bold;	   
 }
 
 .navbar-brand a:hover ,.navbar-brand a:focus{
@@ -63,7 +70,10 @@ body{
 .main-head{
 	font-size: 2.5em;
 	margin-bottom: 50px;
-	color: #0000A0;
+	color: black;
+	text-transform: uppercase;
+	font-family: 'Josefin Slab', serif;
+	font-weight:bold;
 }
 
 .row button{
@@ -73,9 +83,15 @@ body{
 #last_mainpage_btn{
 	margin-bottom:250px;
 }
+
 .row button a{
 	font-size: 1.75em;
 	text-decoration: none;
+	color: #0000A0;
+}
+
+.row button a:hover{
+	background: #ADD8E6;
 }
 
 @media (max-width: 767px){

@@ -13,27 +13,35 @@
       </ul>
     </div>
   <% end %>
-<p>
-	<%= f.label :rollno %>
-	<%= f.text_field :rollno %>
-</p>
+<div class="container">  
+	<div class="row">
+		<span class="form-label col-sm-4"><%= f.label :'Roll number' %>*</span>
+		<span class="form-fields col-sm-4"><%= f.text_field :rollno %></span>
+		<div class="col-sm-4"></div>
+	</div>
 
-<p>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-</p>
-<p>
-	<%= f.label :year %>
-	<%= f.text_field :year %>
-</p>
-<p>
-	<%= f.label :feedback %>
-	<%= f.text_area :feeback %>
-</p>
-<p>
-	<%=  f.collection_select :company_id, Company.order(:compname),:id,:compname %>
-</p>
-<p>
-	<%= f.submit %>
-</p>
+	<div class="row">
+		<span class="form-label col-sm-4"><%= f.label :Email %>*</span>
+		<span class="form-fields col-sm-4"><%= f.text_field :email %></span>
+		<div class="col-sm-4"></div>
+	</div>
+	<div class="row">
+		<span class="form-label col-sm-4"><%= f.label :Year %>*</span>
+		<span class="form-fields col-sm-4"><%= f.text_field :year %></span>
+		<div class="col-sm-4"></div>
+	</div>
+	<div class="row">
+		<span class="form-label col-sm-4"><%= f.label :Feedback %>*</span>
+		<span class="form-fields col-sm-4" id="feed-text"><%= f.text_area :feeback %></span>
+		<div class="col-sm-4"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<span ><%=  f.collection_select :company_id, Company.order(:compname),:id,:compname %></span>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<span><%= f.submit %></span>
+	</div>
+</div>
 <% end %>
