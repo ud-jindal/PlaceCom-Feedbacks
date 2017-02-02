@@ -110,6 +110,10 @@ body{
 	#nav-list{
 		padding-top: 70px;
 	}
+	.row button{
+		margin-top:5px;
+		margin-bottom:5px;	
+	}
 }
 
 @media (min-width: 768px)and(max-width : 792px){
@@ -134,10 +138,9 @@ body{
 		font-size:2em;
 		font-family: 'Josefin Slab', serif;
 	}
-	/*.row button{
-		margin-left: 15px;
-		margin-right: 15px;	
-	}*/
+	.row button{
+		margin: 5px 3px 5px 3px;
+	}
 }
 
 #copyright{

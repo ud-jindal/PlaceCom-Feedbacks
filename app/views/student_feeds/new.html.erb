@@ -13,35 +13,39 @@
       </ul>
     </div>
   <% end %>
+
+  <h1 id="feed-head">FeedBack Form</h1>
 <div class="container">  
 	<div class="row">
-		<span class="form-label col-sm-4"><%= f.label :'Roll number' %>*</span>
-		<span class="form-fields col-sm-4"><%= f.text_field :rollno %></span>
+		<span class="form-label col-xs-4"><%= f.label :'Roll number' %>*</span>
+		<span class="form-fields col-xs-4"><%= f.text_field :rollno %></span>
 		<div class="col-sm-4"></div>
 	</div>
 
 	<div class="row">
-		<span class="form-label col-sm-4"><%= f.label :Email %>*</span>
-		<span class="form-fields col-sm-4"><%= f.text_field :email %></span>
-		<div class="col-sm-4"></div>
+		<span class="form-label col-xs-4"><%= f.label :Email %>*</span>
+		<span class="form-fields col-xs-4"><%= f.text_field :email %></span>
+		<div class="col-xs-4"></div>
 	</div>
 	<div class="row">
-		<span class="form-label col-sm-4"><%= f.label :Year %>*</span>
-		<span class="form-fields col-sm-4"><%= f.text_field :year %></span>
-		<div class="col-sm-4"></div>
+		<span class="form-label col-xs-4"><%= f.label :Year %>*</span>
+		<span class="form-fields col-xs-4"><%= f.text_field :year %></span>
+		<div class="col-xs-4"></div>
 	</div>
 	<div class="row">
-		<span class="form-label col-sm-4"><%= f.label :Feedback %>*</span>
-		<span class="form-fields col-sm-4" id="feed-text"><%= f.text_area :feeback %></span>
-		<div class="col-sm-4"></div>
+		<span class="form-label col-xs-4"><%= f.label :Feedback %>*</span>
+		<span class="form-fields col-xs-4" id="feed-text"><%= f.text_area :feeback %></span>
+		<div class="col-xs-4"></div>
 	</div>
-	<div class="row">
-		<div class="col-sm-4"></div>
-		<span ><%=  f.collection_select :company_id, Company.order(:compname),:id,:compname %></span>
+	<div class="row" id="dropdrown">
+		<div class="col-xs-4"></div>
+		<span class="col-xs-4"><%=  f.collection_select :company_id, Company.order(:compname),:id,:compname %></span>
+		<div class="col-xs-4"></div>
 	</div>
-	<div class="row">
-		<div class="col-sm-4"></div>
-		<span><%= f.submit %></span>
+	<div class="row" id="submit">
+		<div class="col-xs-4"></div>
+		<span class="col-xs-4"><%= f.submit %></span>
+		<div class="col-xs-4"></div>
 	</div>
 </div>
 <% end %>

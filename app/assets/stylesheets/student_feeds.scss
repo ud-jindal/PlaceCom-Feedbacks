@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#feed-head{
+	font-size:2.5em;
+	text-align:center;
+	text-transform: uppercase;
+	font-family: 'Josefin Slab', serif;
+	font-weight:bold;
+}
 
 .form-label{
 	font-size: 1.3em;
@@ -17,5 +24,18 @@
 
 textarea {
 	height:100px;
-	width:350px;
+	width:320px;
+}
+
+#feed-text{
+	margin-bottom:5px;
+}
+
+#dropdown{
+	margin-top:5px;	
+}
+
+#submit{
+	margin-top:15px;
+	margin-bottom:105px;
 }
