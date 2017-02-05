@@ -1,35 +1,5 @@
 <tbody>
-<<<<<<< HEAD
-	<p id="notice"><%= notice %></p>
 
-<% @studentfeeds.each do |studentfeed| %>
-	<tr>
-	<p>
-  <strong>Rollno.:</strong>
-  <%= studentfeed.rollno %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= studentfeed.companyname %>
-</p>
-
-<div>
-  <% if studentfeed.feeback.length > 10 %>
-    <%= truncate(studentfeed.feeback, length: 10) %>
-    <%= link_to '...Read more', '', class: "read-more-#{studentfeed.id}" %>
-    <script>
-      $('.read-more-<%= studentfeed.id %>').on('click', function(e) {
-        e.preventDefault()
-        $(this).parent().html('<%= escape_javascript studentfeed.feeback %>')
-      })
-    </script>
-  <% else %>
-    <%= studentfeed.feeback %>
-  <% end %>
-<div>
-	</tr>
-=======
 <h1> STUDENT REVIEWS </h1>
   <p id="notice"><%= notice %></p>
   <div class = "main">
@@ -52,7 +22,6 @@
       <% end %>
     <!--<td><%= studentfeed.feeback %></td>-->
   </tr>
->>>>>>> 6f043343687a123e27c05932817fa7cdf25a3a6b
 <% end %>
 </table>
 </div>
