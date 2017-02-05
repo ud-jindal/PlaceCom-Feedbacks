@@ -1,9 +1,9 @@
 class StudentFeedsController < ApplicationController
   before_action :set_studentfeed, only: [:show]  
-  def index
-    @studentfeeds= StudentFeed.all
-
+  def index()
+    
   end
+  
   def new
     @studentfeed= StudentFeed.new
   	@company= Company.all
@@ -30,6 +30,7 @@ class StudentFeedsController < ApplicationController
   private
   def set_studentfeed
     @studentfeed= StudentFeed.find(params[:id]) 
+
   end
   def post_params
   	params.require(:student_feed).permit(:rollno, :email, :year, :feeback, :company_id  )

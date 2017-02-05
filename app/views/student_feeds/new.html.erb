@@ -39,7 +39,7 @@
 	</div>
 	<div class="row" id="dropdrown">
 		<div class="col-xs-4"></div>
-		<span class="col-xs-4"><%=  f.collection_select :company_id, Company.order(:compname),:id,:compname ,:prompt => 'Select Company' %></span>
+		<span class="col-xs-4"><%=  f.collection_select :company_id, @company,:id,:compname ,:prompt => 'Select Company' %></span>
 		<div class="col-xs-4"></div>
 	</div>
 	<div class="row" id="submit">
