@@ -2,6 +2,7 @@ class StudentFeedsController < ApplicationController
   before_action :set_studentfeed, only: [:show]  
   def index
     @studentfeeds= StudentFeed.all
+
   end
   def new
     @studentfeed= StudentFeed.new
@@ -14,8 +15,8 @@ class StudentFeedsController < ApplicationController
       if @studentfeed.save
         @studentfeed.companyname= Company.find(@studentfeed.company_id).compname
         @studentfeed.save
-        format.html { redirect_to :action =>'index', notice: 'User was successfully created.' }
-        #format.json { render :index, status: :created, location: @user }
+        flash[:notice] = "Widget was successfully created."
+        format.html { redirect_to :action =>'index'}
       else
         format.html { render :new }
         format.json { render json: @studentfeed.errors, status: :unprocessable_entity }
