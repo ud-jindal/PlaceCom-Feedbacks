@@ -1,5 +1,5 @@
-
 <tbody>
+<<<<<<< HEAD
 	<p id="notice"><%= notice %></p>
 
 <% @studentfeeds.each do |studentfeed| %>
@@ -29,7 +29,34 @@
   <% end %>
 <div>
 	</tr>
+=======
+<h1> STUDENT REVIEWS </h1>
+  <p id="notice"><%= notice %></p>
+  <div class = "main">
+  <table class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <tr>
+    <th width= 10%>Roll Number</th>
+    <th width= 15%>Comapany Name</th>
+    <th width= 75%>Student Review</th>
+  </tr>
+<% @studentfeeds.each do |studentfeed| %>
+  <tr>
+    <td width= 10%><%= studentfeed.rollno %></td>
+    <td width= 15%><%= studentfeed.companyname %></td>
+    <td width= 75%>
+      <% if studentfeed.feeback.length > 1000 %>
+        <%= truncate studentfeed.feeback, length:1000 %>
+        <%= link_to '...read more', studentfeed %> </td>
+      <% else %>
+        <%= studentfeed.feeback %>
+      <% end %>
+    <!--<td><%= studentfeed.feeback %></td>-->
+  </tr>
+>>>>>>> 6f043343687a123e27c05932817fa7cdf25a3a6b
 <% end %>
+</table>
+</div>
+<br>
+<div class = "link" >
+<%= link_to 'New StudentFeed', new_student_feed_path %></div>
 </tbody>
-
-<%= link_to 'New StudentFeed', new_student_feed_path %>
