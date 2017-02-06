@@ -1,9 +1,9 @@
 <tbody>
 
 <h1> STUDENT REVIEWS </h1>
-  <%= form_for(@studentfeeds) do |f| %>
+  <%= form_for(@studentreview) do |f| %>
   <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
-  <%= f.submit %>
+  <%= f.submit "search"%>
   <% end %>
   <p id="notice"><%= notice %></p>
   <div class = "main">
