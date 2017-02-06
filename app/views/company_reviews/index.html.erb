@@ -1,5 +1,10 @@
 <tbody>
-<% @companyreviews.each do |companyreview| %>
+<h1> COMPANY REVIEWS </h1>
+	<%= form_for(@companyreview) do |f| %>
+    <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
+    <%= f.submit "search"%>
+    <% end %>
+<% @user.each do |companyreview| %>
 	<tr>
 	<p>
   <strong>Company:</strong>
