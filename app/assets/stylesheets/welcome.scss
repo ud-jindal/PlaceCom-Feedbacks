@@ -73,6 +73,23 @@ body{
 	margin-top: 33px;
 }
 
+/* End of Header*/
+
+
+.panel-footer{
+	margin-top:25px;
+	bottom: 0;
+    height: 200px;
+    width: 100%;
+}
+
+#copyright{
+	line-height: 50px;
+}
+
+/* End of Footer*/
+
+
 .main-head{
 	font-size: 2.5em;
 	margin-bottom: 50px;
@@ -87,7 +104,7 @@ body{
 }
 
 #last_mainpage_btn{
-	margin-bottom:250px;
+	margin-bottom:370px;
 }
 
 .row button a{
@@ -100,7 +117,7 @@ body{
 	background: #ADD8E6;
 }
 
-
+/*End of main page*/
 
 @media (min-width: 768px)and(max-width : 991px){
 	.navbar-brand{
@@ -141,8 +158,4 @@ body{
 	.row button{
 		margin: 5px 3px 5px 3px;
 	}
-}
-
-#copyright{
-	line-height: 50px;
 }

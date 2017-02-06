@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #feed-head{
+	margin-top:50px;
 	font-size:2.5em;
 	text-align:center;
 	text-transform: uppercase;
@@ -37,7 +38,7 @@ textarea {
 
 #submit{
 	margin-top:15px;
-	margin-bottom:105px;
+	margin-bottom:140px;
 }
 
 table, th, td {
@@ -59,7 +60,7 @@ th, td {
 
 }
 
-h1{
+#feed-head{
 	font-weight: bold;
 	font-family: 'Josefin Slab',	
 }	
