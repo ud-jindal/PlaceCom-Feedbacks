@@ -4,7 +4,7 @@
     <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
     <%= f.submit "search"%>
     <% end %>
-<% @user.each do |companyreview| %>
+<!--<% @user.each do |companyreview| %>
 	<tr>
 	<p>
   <strong>Company:</strong>
@@ -21,5 +21,27 @@
   <%= companyreview.feedback %>
 </p>
 	</tr>
+<% end %>-->
+<div class = "main">
+  <table class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <tr>
+    <th width= 10%>Company Name</th>
+    <th width= 15%>Year</th>
+    <th width= 75%>Company Feedback</th>
+  </tr>
+<% @user.each do |companyreview| %>
+  <tr>
+    <td width= 10%><%= companyreview.name %></td>
+    <td width= 15%><%= companyreview.year %></td>
+    <td width= 75%>
+      <% if companyreview.feeback.length > 1000 %>
+        <%= truncate companyreview.feeback, length:1000 %>
+        <%= link_to '...read more', companyreview %> </td>
+      <% else %>
+        <%= companyreview.feeback %>
+      <% end %>
+  </tr>
 <% end %>
+</table>
+</div>
 </tbody>
