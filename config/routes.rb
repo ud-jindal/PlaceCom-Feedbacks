@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'student_feeds/index'
   get 'company_reviews/index'
   get 'student_reviews/index'
   post 'student_reviews', to: 'student_reviews#index'
   post 'company_reviews', to: 'company_reviews#index'
   resources :student_feeds
-  
   resources :company_reviews
   resources :student_reviews
   get 'welcome/index'

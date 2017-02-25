@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205182550) do
+ActiveRecord::Schema.define(version: 20170225122703) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "compname",              limit: 255
@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(version: 20170205182550) do
     t.integer  "company_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "name",        limit: 255
+    t.string   "stream",      limit: 255
+    t.string   "phone_no",    limit: 255
   end
 
   add_index "student_feeds", ["company_id"], name: "index_student_feeds_on_company_id", using: :btree

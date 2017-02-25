@@ -15,18 +15,35 @@
   <% end %>
 
   <h1 id="feed-head">FeedBack Form</h1>
-<div class="container">  
+<div class="container">
+	<div class="row">
+		<span class="form-label col-xs-4"><%= f.label :Name %>*</span>
+		<span class="form-fields col-xs-4"><%= f.text_field :name %></span>
+		<div class="col-sm-4"></div>
+	</div>
+
 	<div class="row">
 		<span class="form-label col-xs-4"><%= f.label :'Roll number' %>*</span>
 		<span class="form-fields col-xs-4"><%= f.text_field :rollno %></span>
 		<div class="col-sm-4"></div>
 	</div>
-
+	<div class="row" id="dropdrown">
+		<div class="col-xs-4"></div>
+		<span class="col-xs-4"><%= f.select :stream, ['imtech', 'mtech', 'phd']%></span>
+		<div class="col-xs-4"></div>
+	</div>
 	<div class="row">
 		<span class="form-label col-xs-4"><%= f.label :Email %>*</span>
 		<span class="form-fields col-xs-4"><%= f.text_field :email %></span>
 		<div class="col-xs-4"></div>
 	</div>
+
+	<div class="row">
+		<span class="form-label col-xs-4"><%= f.label :'Phone no.' %>*</span>
+		<span class="form-fields col-xs-4"><%= f.text_field :phone_no %></span>
+		<div class="col-sm-4"></div>
+	</div>
+
 	<div class="row">
 		<span class="form-label col-xs-4"><%= f.label :Year %>*</span>
 		<span class="form-fields col-xs-4"><%= f.text_field :year %></span>

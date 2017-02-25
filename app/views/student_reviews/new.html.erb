@@ -1,5 +1,0 @@
-  <h1> STUDENT REVIEWS </h1>
-  <%= form_for(@studentreview) do |f| %>
-  <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
-  <%= f.submit %>
-  <% end %>

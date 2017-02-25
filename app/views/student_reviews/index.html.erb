@@ -20,13 +20,14 @@
     <td width= 75%>
       <% if studentfeed.feeback.length > 1000 %>
         <%= truncate studentfeed.feeback, length:1000 %>
-        <%= link_to '...read more', studentfeed %> </td>
+        <%= link_to '...read more', studentfeed,:target=>"_blank" %> </td>
       <% else %>
         <%= studentfeed.feeback %>
       <% end %>
     <!--<td><%= studentfeed.feeback %></td>-->
   </tr>
 <% end %>
+
 </table>
 </div>
 <br>

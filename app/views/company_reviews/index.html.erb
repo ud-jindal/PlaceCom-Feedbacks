@@ -34,11 +34,11 @@
     <td width= 10%><%= companyreview.name %></td>
     <td width= 15%><%= companyreview.year %></td>
     <td width= 75%>
-      <% if companyreview.feeback.length > 1000 %>
-        <%= truncate companyreview.feeback, length:1000 %>
+      <% if companyreview.feedback.length > 1000 %>
+        <%= truncate companyreview.feedback, length:1000 %>
         <%= link_to '...read more', companyreview %> </td>
       <% else %>
-        <%= companyreview.feeback %>
+        <%= companyreview.feedback %>
       <% end %>
   </tr>
 <% end %>
