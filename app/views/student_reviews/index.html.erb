@@ -15,7 +15,7 @@
   </tr>
 <% @user.each do |studentfeed| %>
   <tr>
-    <td width= 10%><%= studentfeed.rollno %></td>
+    <td width= 10%><%= studentfeed.name %></td>
     <td width= 15%><%= studentfeed.companyname %></td>
     <td width= 75%>
       <% if studentfeed.feeback.length > 1000 %>

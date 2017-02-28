@@ -3,7 +3,9 @@ class StudentReviewsController < ApplicationController
 		@company= Company.all
 		begin
     		@studentreview= StudentReview.new(post_params)
-    		@user= StudentFeed.where(company_id: @studentreview.company_id)
+    		@user1= Company.find(@studentreview.company_id)
+        @user= @user1.student_feeds
+
     	rescue
     		@studentreview= StudentReview.new
     		@user= StudentFeed.all
