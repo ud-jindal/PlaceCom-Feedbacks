@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228120929) do
+ActiveRecord::Schema.define(version: 20170228182444) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "compname",              limit: 255
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20170228120929) do
   end
 
   create_table "companies_student_feeds", id: false, force: :cascade do |t|
-    t.integer "student_feed_id", limit: 4
     t.integer "company_id",      limit: 4
+    t.integer "student_feed_id", limit: 4
   end
 
   create_table "company_reviews", force: :cascade do |t|
@@ -44,15 +44,6 @@ ActiveRecord::Schema.define(version: 20170228120929) do
   end
 
   add_index "company_reviews", ["company_id"], name: "index_company_reviews_on_company_id", using: :btree
-
-  create_table "select_companies", force: :cascade do |t|
-    t.string   "companyname",     limit: 255
-    t.integer  "student_feed_id", limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  add_index "select_companies", ["student_feed_id"], name: "index_select_companies_on_student_feed_id", using: :btree
 
   create_table "student_feeds", force: :cascade do |t|
     t.string   "rollno",      limit: 255
@@ -70,11 +61,6 @@ ActiveRecord::Schema.define(version: 20170228120929) do
 
   add_index "student_feeds", ["company_id"], name: "index_student_feeds_on_company_id", using: :btree
 
-  create_table "student_feeds_companies", id: false, force: :cascade do |t|
-    t.integer "company_id",      limit: 4
-    t.integer "student_feed_id", limit: 4
-  end
-
   create_table "student_reviews", force: :cascade do |t|
     t.integer  "company_id",      limit: 4
     t.integer  "student_feed_id", limit: 4
@@ -84,21 +70,7 @@ ActiveRecord::Schema.define(version: 20170228120929) do
 
   add_index "student_reviews", ["student_feed_id"], name: "index_student_reviews_on_student_feed_id", using: :btree
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.boolean  "admin",                          default: false, null: false
-    t.string   "email",              limit: 255,                 null: false
-    t.string   "encrypted_password", limit: 128,                 null: false
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128,                 null: false
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
-
   add_foreign_key "company_reviews", "companies"
-  add_foreign_key "select_companies", "student_feeds"
   add_foreign_key "student_feeds", "companies"
   add_foreign_key "student_reviews", "student_feeds"
 end
