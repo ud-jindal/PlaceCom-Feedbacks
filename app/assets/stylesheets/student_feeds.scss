@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#feed-head{
+#sub-feed-head{
 	margin-top:25px;
 	margin-bottom:25px;
 	font-size:2.5em;
@@ -48,12 +48,21 @@ textarea {
 }
 
 .submit_sub_btn{
-	margin-left:8vw;
+	margin-bottom:51px;
+	border:0;
+	margin-left:-2vw;
 	color:white;
 	background:indigo;
 	padding:15px;
 	font-size:1.2em;
+	box-shadow:4px 4px 20px #8A2BE2	;
 }
+
+.submit_sub_btn:active{
+	box-shadow:7px 7px 10px #8A2BE2	;
+}
+
+
 
 table, th, td {
     border: 1px solid black;    
@@ -71,17 +80,17 @@ body{
 
 .link{
 	text-align: center;
-
 }
 
-#feed-head{
-	font-weight: bold;
-	font-family: 'Josefin Slab',	
-}
+@media (min-width: 992px)and(max-width: 1399px){
+	textarea {
+		height:22vw;
+	}
+} 
 
 @media (min-width: 768px)and(max-width : 991px){
 	.submit_sub_btn{
-		margin-left:2vw;
+		margin-left:-2vw;
 		padding:10px;
 		font-size:1.1em;
 	}
@@ -93,7 +102,7 @@ body{
 
 @media (max-width: 767px){
 	.submit_sub_btn{
-		margin-left:1vw;
+		margin-left:-1vw;
 		padding:10px;
 		font-size:1.1em;
 	}
