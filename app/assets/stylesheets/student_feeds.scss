@@ -36,7 +36,7 @@
 
 textarea {
 	height:19vw;
-	width:30vw;
+	width:36vw;
 }
 
 #feedtext{
@@ -47,22 +47,13 @@ textarea {
 	margin-top:15px;	
 }
 
-#submit{
-	margin-top:15px;
-	margin-bottom:70px;
-	margin-left:0;
-	margin-right:0;
-	padding-left:0;
-}
-
-.submit_btn{
+.submit_sub_btn{
 	margin-left:8vw;
 	color:white;
-}
-
-/*#commit{
 	background:indigo;
-}*/
+	padding:15px;
+	font-size:1.2em;
+}
 
 table, th, td {
     border: 1px solid black;    
@@ -86,4 +77,28 @@ th, td {
 #feed-head{
 	font-weight: bold;
 	font-family: 'Josefin Slab',	
+}
+
+@media (min-width: 768px)and(max-width : 991px){
+	.submit_sub_btn{
+		margin-left:2vw;
+		padding:10px;
+		font-size:1.1em;
+	}
+	textarea {
+		height:22vw;
+		width:60vw;
+	}
+}
+
+@media (max-width: 767px){
+	.submit_sub_btn{
+		margin-left:1vw;
+		padding:10px;
+		font-size:1.1em;
+	}
+	textarea {
+		height:22vw;
+		width:60vw;
+	}
 }	
