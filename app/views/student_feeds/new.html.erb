@@ -1,5 +1,3 @@
-
-
 <%= form_for(@studentfeed) do |f| %>
 
 <% if @studentfeed.errors.any? %>
@@ -14,8 +12,8 @@
     </div>
   <% end %>
 
-  <h1 id="feed-head">FeedBack Form</h1>
-<div class="container">
+<h1 id="feed-head">FeedBack Form</h1>
+<!--<div class="container">
 	<div class="row">
 		<span class="form-label col-xs-4"><%= f.label :Name %>*</span>
 		<span class="form-fields col-xs-4"><%= f.text_field :name %></span>
@@ -29,7 +27,7 @@
 	</div>
 	<div class="row" id="dropdrown">
 		<div class="col-xs-4"></div>
-		<span class="col-xs-4"><%= f.select :stream, ['imtech', 'mtech', 'phd']%></span>
+		<span class="col-xs-4"><%= f.select :stream, ['Imtech', 'Mtech', 'Phd']%></span>
 		<div class="col-xs-4"></div>
 	</div>
 	<div class="row">
@@ -64,5 +62,54 @@
 		<span class="col-xs-4"><%= f.submit %></span>
 		<div class="col-xs-4"></div>
 	</div>
-</div>
+</div>-->
+<div class="col-md-1"></div>
+<div class="row box">
+		<div class="col-xs-12 col-md-4">
+			<div class="row">
+				<span class="form-label col-xs-4"><%= f.label :Name %>*</span>
+				<span class="form-fields col-xs-4"><%= f.text_field :name %></span>
+				<div class="col-sm-4"></div>
+			</div>
+			<div class="row">
+				<span class="form-label col-xs-4"><%= f.label :'Roll number' %>*</span>
+				<span class="form-fields col-xs-4"><%= f.text_field :rollno %></span>
+				<div class="col-sm-4"></div>	
+			</div>
+			<div class="row" id="dropdrown">
+				<span class="form-label col-xs-4"><%= f.label :Stream %>*</span>
+				<span class="form-fields col-xs-4"><%= f.select :stream, ['Imtech', 'Mtech', 'Phd']%></span>
+				<div class="col-xs-4"></div>
+			</div>
+			<div class="row">
+				<span class="form-label col-xs-4"><%= f.label :Email %>*</span>
+				<span class="form-fields col-xs-4"><%= f.text_field :email %></span>
+				<div class="col-xs-4"></div>
+			</div>
+			<div class="row">
+				<span class="form-label col-xs-4"><%= f.label :'Phone no.' %></span>
+				<span class="form-fields col-xs-4"><%= f.text_field :phone_no %></span>
+				<div class="col-sm-4"></div>
+			</div>
+			<div class="row">
+				<span class="form-label col-xs-4"><%= f.label :Year %>*</span>
+				<span class="form-fields col-xs-4"><%= f.text_field :year %></span>
+				<div class="col-xs-4"></div>
+			</div>
+			<div class="row" id="dropdrown">
+				<span class="form-label col-xs-4"><%= f.label :Company %></span>
+				<span class="form-fields col-xs-4"><%=  f.collection_select :company_id, Company.order(:compname),:id,:compname %></span>
+				<div class="col-xs-4"></div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6">
+				<span class="form-label col-xs-4"><%= f.label :Feedback %>*</span>
+				<span class="form-fields col-xs-8" id="feedtext"><%= f.text_area :feeback %></span>
+		</div>
+	</div>
+	<div class="row" id="submit">
+		<div class="col-xs-4"></div>
+		<span class="col-xs-4 submit_btn"><%= f.submit %></span>
+		<div class="col-xs-4"></div>
+	</div>
 <% end %>

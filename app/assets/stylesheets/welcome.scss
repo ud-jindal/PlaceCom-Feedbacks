@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body{
-	background: #D3D3D3;
+	/*background: #D3D3D3;*/
+	background: #F0F3F4;
 	font-size: 2em;
 }
 
@@ -14,7 +15,7 @@ body{
 }
 
 #header-nav{
-	background: white;
+	background: #008B8B;
 	border: 0px;
 	border-radius: 15px;
 	margin-top:2px;
@@ -42,7 +43,8 @@ body{
 	margin-top:0px;
 	margin-bottom:0px;
 	text-shadow: 3.5px 3.5px 4px #222;
-	color: #00519C;
+	/*color: #00519C;*/
+	color:white;
 	font-weight:bold;	   
 }
 
@@ -56,7 +58,8 @@ body{
 }
 
 #nav-list a{
-	color: blue;
+	/*color: blue;*/
+	color: white;
 	font-size: 1.5em;
 }
 
@@ -81,6 +84,8 @@ body{
 	bottom: 0;
     height: 200px;
     width: 100%;
+    background:#008B8B;
+    color:white;
 }
 
 #copyright{
@@ -92,6 +97,7 @@ body{
 
 .main-head{
 	font-size: 2.5em;
+	margin-top: 50px;
 	margin-bottom: 50px;
 	color: black;
 	text-transform: uppercase;
@@ -99,21 +105,41 @@ body{
 	font-weight:bold;
 }
 
-.row button{
-	border:1px solid #0000A0;	
+.container{
+	margin:auto;
+	padding:0;
+}
+
+.container button{
+	height:15vw;
+	background:#008B8B;
+	/*border:1px solid #0000A0;*/	
+	box-shadow:8px 8px 10px #20B2AA; 
+}
+
+.container button:active{
+	box-shadow:12px 12px 10px #20B2AA;	
+}
+
+#first-button{
+	margin-left:25px;
 }
 
 #last_mainpage_btn{
-	margin-bottom:370px;
+	margin-bottom:130px;
 }
 
-.row button a{
+.container button a{
+	position:absolute;
+	bottom:0;
+	right:1vw;
 	font-size: 1.75em;
 	text-decoration: none;
-	color: #0000A0;
+	/*color: #0000A0;*/
+	color:white;
 }
 
-.row button a:hover{
+.container button a:hover{
 	background: #ADD8E6;
 }
 
@@ -127,7 +153,7 @@ body{
 	#nav-list{
 		padding-top: 70px;
 	}
-	.row button{
+	.container button{
 		margin-top:5px;
 		margin-bottom:5px;	
 	}
@@ -155,7 +181,7 @@ body{
 		font-size:2em;
 		font-family: 'Josefin Slab', serif;
 	}
-	.row button{
+	.container button{
 		margin: 5px 3px 5px 3px;
 	}
 }

@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #feed-head{
-	margin-top:50px;
+	margin-top:25px;
+	margin-bottom:25px;
 	font-size:2.5em;
 	text-align:center;
 	text-transform: uppercase;
@@ -15,31 +16,48 @@
 	font-size: 1.3em;
 	text-align:right;
 	padding-right:0px;
-	margin-top:10px;
+	margin-top:15px;
 	padding-top:4px;
 }
 
 .form-fields{
-	margin-top:5px;	
+	margin-top:15px;	
+}
+
+.box{
+	/*border:0.5px dotted blue; 
+	box-shadow:8px 8px 15px white;*/
 }
 
 textarea {
-	height:100px;
-	width:320px;
+	height:19vw;
+	width:30vw;
 }
 
-#feed-text{
+#feedtext{
 	margin-bottom:5px;
 }
 
 #dropdown{
-	margin-top:5px;	
+	margin-top:15px;	
 }
 
 #submit{
 	margin-top:15px;
-	margin-bottom:140px;
+	margin-bottom:70px;
+	margin-left:0;
+	margin-right:0;
+	padding-left:0;
 }
+
+.submit_btn{
+	margin-left:8vw;
+	color:white;
+}
+
+/*#commit{
+	background:indigo;
+}*/
 
 table, th, td {
     border: 1px solid black;    
