@@ -1,4 +1,4 @@
-<tbody>
+<!-- <tbody>
 
 <h1> STUDENT REVIEWS </h1>
   <%= form_for(@studentreview) do |f| %>
@@ -24,7 +24,7 @@
       <% else %>
         <%= studentfeed.feeback %>
       <% end %>
-    <!--<td><%= studentfeed.feeback %></td>-->
+    <td><%= studentfeed.feeback %></td>
   </tr>
 <% end %>
 
@@ -34,3 +34,46 @@
 <div class = "link" >
 <%= link_to 'New StudentFeed', new_student_feed_path %></div>
 </tbody>
+ -->
+
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+ <body>
+ <h1> STUDENT REVIEWS </h1>
+  <%= form_for(@studentreview) do |f| %>
+  <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
+  <%= f.submit "search"%>
+  <% end %>
+  
+  <p id="notice"><%= notice %></p>
+  
+<% @user.each do |studentfeed| %>
+<div class="w3-content" style="max-width:1400px">
+
+<div class="w3-row">
+
+<div class="w3-col">
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container w3-padding-8">
+      <h3><b><%= studentfeed.name %></b></h3>
+      <h5><%= studentfeed.companyname %> <span class="w3-opacity">April 7, 2014</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <% if studentfeed.feeback.length > 1000 %>
+        <%= truncate studentfeed.feeback, length:1000 %>
+        <%= link_to 'read more', studentfeed, :target=>"_blank" %> </td>
+      <% else %>
+        <%= studentfeed.feeback %>
+      <% end %>
+      
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <hr style="margin:1px;">
+  
+  <% end %>
+  <%= link_to 'New StudentFeed', new_student_feed_path %></div>
+</body>

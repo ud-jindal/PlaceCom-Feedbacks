@@ -1,14 +1,21 @@
-<p>
-  <strong>Rollno.:</strong>
-  <%= @studentfeed.rollno %>
-</p>
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<div class="w3-row">
 
-<p>
-  <strong>Company:</strong>
-  <%= @studentfeed.companyname %>
-</p>
+<div class="w3-col">
+  
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container w3-padding-8">
+      <h3><b><%= @studentfeed.rollno %></b></h3>
+      <h5><%= @studentfeed.companyname %>, <span class="w3-opacity">April 7, 2014</span></h5>
+    </div>
 
-<p>
-  <strong>feedback:</strong>
-  <%= @studentfeed.feeback %>
-</p>
+    <div class="w3-container">
+      <p><%= @studentfeed.feeback %></p>
+      
+    </div>
+  </div>
+  <hr> 
+</div>
+
+</div>
