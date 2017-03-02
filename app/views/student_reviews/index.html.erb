@@ -1,45 +1,14 @@
-<!-- <tbody>
 
-<h1> STUDENT REVIEWS </h1>
-  <%= form_for(@studentreview) do |f| %>
-  <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
-  <%= f.submit "search"%>
-  <% end %>
-  <p id="notice"><%= notice %></p>
-  <div class = "main">
-  <table class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
-  <tr>
-    <th width= 10%>Roll Number</th>
-    <th width= 15%>Comapany Name</th>
-    <th width= 75%>Student Review</th>
-  </tr>
-<% @user.each do |studentfeed| %>
-  <tr>
-    <td width= 10%><%= studentfeed.name %></td>
-    <td width= 15%><%= studentfeed.companyname %></td>
-    <td width= 75%>
-      <% if studentfeed.feeback.length > 1000 %>
-        <%= truncate studentfeed.feeback, length:1000 %>
-        <%= link_to '...read more', studentfeed,:target=>"_blank" %> </td>
-      <% else %>
-        <%= studentfeed.feeback %>
-      <% end %>
-    <td><%= studentfeed.feeback %></td>
-  </tr>
-<% end %>
-
-</table>
-</div>
-<br>
-<div class = "link" >
-<%= link_to 'New StudentFeed', new_student_feed_path %></div>
-</tbody>
- -->
 
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
  <body>
- <h1> STUDENT REVIEWS </h1>
+ <header style="background: #008B8B;"> 
+  <nav id="header-nav" class="navbar navbar-default">
+    <div><h1 style="padding: 25px 0px 25px 0px; font-size: 4.5em" ><b>STUDENT REVIEWS</b></h1>
+    </div>
+    </nav>
+</header>
   <%= form_for(@studentreview) do |f| %>
   <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
   <%= f.submit "search"%>
