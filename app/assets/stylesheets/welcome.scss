@@ -95,9 +95,9 @@ body{
 
 
 .panel-footer{
-	margin-top:25px;
+	margin-top:50px;
 	bottom: 0;
-    height: 200px;
+    height: 150px;
     width: 100%;
     background:#008B8B;
     color:white;
@@ -132,7 +132,22 @@ body{
 }
 
 .container button:active{
+	opacity:0.95;
 	box-shadow:12px 12px 10px #20B2AA;	
+}
+
+.container button:hover{
+	opacity:0.85;
+}
+
+.mainpage_btn_title{
+	color:white;
+	position:absolute;
+	bottom:0;
+	right:1vw;
+	font-size: 1.5em;
+	font-weight:bold;
+	text-decoration: none;
 }
 
 #first-button{
@@ -155,22 +170,22 @@ body{
 }
 
 #last_mainpage_btn{
-	margin-bottom:104px;
+	margin-bottom:129px;
 }
 
-.container button a{
+/*.container button a{
 	position:absolute;
 	bottom:0;
 	right:1vw;
 	font-size: 1.75em;
 	text-decoration: none;
-	/*color: #0000A0;*/
+	/*color: #0000A0;
 	color:white;
 }
 
 .container button a:hover{
 	background: #ADD8E6;
-}
+}*/
 
 /*End of main page*/
 

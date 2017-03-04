@@ -36,30 +36,33 @@
 <body>
 	<h1 class="main-head">Placement Feedback Portal</h1>
 	<div class="container">
-			<button type="button" class="btn btn-secondary col-md-3  col-xs-12" id="first-button">
+			<!--<button type="button" class="btn btn-secondary col-md-3  col-xs-12" id="first-button">
 				<img src="/images/download-icon.png" alt="Form Image" id="form-img" />
 					<%= link_to "Student Feedback Form", "/student_feeds/new" %>
-			</button></a>
+			</button></a>-->
 			<!--<img src="/images/download-icon.png" alt="Form Image" id="form-img" />
 			<%= button_to "Student Feedback Form", "/student_feeds/new", :id => "first-button",
       :class => "btn btn-secondary col-md-3  col-xs-12", :method => :get %>
 -->
+			<%= link_to '<button type="button" class="btn btn-secondary col-md-3  col-xs-12" id="first-button"><img src="/images/download-icon.png" alt="Form Image" id="form-img" /><br><span class="mainpage_btn_title">Student Feedback Form</span></button>'.html_safe, "/student_feeds/new" %>
 			<br class="visible-xs">
 
 			<div class="col-md-1"></div>
 			
-			<button type="button" class="btn btn-secondary col-md-3  col-xs-12">
+			<!--<button type="button" class="btn btn-secondary col-md-3  col-xs-12">
 			<img src="/images/rsz_a1.png" alt="Student Review Image" id="stu-img" />
 			<%= link_to "Student's Reviews", "/student_reviews/index" %>
-			</button>
+			</button>-->
+			<%= link_to '<button type="button" class="btn btn-secondary col-md-3  col-xs-12"><img src="/images/rsz_a1.png" alt="Student Review Image" id="stu-img"/><br><span class="mainpage_btn_title">Students Reviews</span></button>'.html_safe, "/student_reviews/index" %>
 			<br class="visible-xs">
 			
 			<div class="col-md-1"></div>
 			
-			<button type="button" class="btn btn-secondary col-md-3  col-xs-12" id="last_mainpage_btn">
+			<!--<button type="button" class="btn btn-secondary col-md-3  col-xs-12" id="last_mainpage_btn">
 			<img src="/images/rsz_comp_reviews.png" alt="Company Review Image" id="comp-img" />
 			<%= link_to "Company's Reviews", "/company_reviews/index" %>
-			</button>
+			</button>-->
+			<%= link_to '<button type="button" class="btn btn-secondary col-md-3  col-xs-12" id="last_mainpage_btn"><img src="/images/rsz_comp_reviews.png" alt="Company Review Image" id="comp-img"/><br><span class="mainpage_btn_title">Companys Reviews</span></button>'.html_safe, "/company_reviews/index" %>
 			<br class="visible-xs">
 	</div>	
 </body>
