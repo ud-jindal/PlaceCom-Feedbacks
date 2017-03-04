@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'company_reviews/index'
   get 'student_reviews/index'
+  get 'student_feeds', to: 'student_feeds#new'
   post 'student_reviews', to: 'student_reviews#index'
   post 'company_reviews', to: 'company_reviews#index'
   resources :student_feeds

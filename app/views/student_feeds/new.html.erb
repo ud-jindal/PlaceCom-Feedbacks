@@ -140,7 +140,7 @@
 						<i class="fa fa-graduation-cap fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-4">
-						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {}, { :class => 'sub-menu-parent' }%>	
+						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent' }%>	
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
@@ -190,7 +190,9 @@
 						<i class="fa fa-building-o fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-4">
-						<%=  f.collection_select :company_id, Company.order(:compname),:id,:compname , :class => 'sub-menu-parent' %> 
+						<%=f.collection_check_boxes :company_ids,@company,:id,
+						:compname, {:prompt=> 'select companies'}, 
+						 {:multiple=> true, :size=> 1}%> 
 					</span>
 					<!--<div class="col-xs-4"></div>-->
 				</div>
@@ -217,7 +219,6 @@
 			</div>-->
 		</div>
 	<div class="col-xs-2 col-md-2"></div>	
-</form>		
 	<div class="row" id="submit">
 		<div class="col-xs-4"></div>
 		<span class="col-xs-4">
@@ -225,4 +226,5 @@
 		</span>
 		<div class="col-xs-4"></div>
 	</div>
+</form>
 <% end %>
