@@ -30,7 +30,7 @@ class StudentFeedsController < ApplicationController
 
   end
   def post_params
-  	params.require(:student_feed).permit(:rollno, :email, :year, :feeback,  :name, :stream, :phone_no, company_ids: []  )
+  	params.require(:student_feed).permit(:rollno, :email, :year, :feeback,  :name, :stream, :phone_no, :focus, company_ids: []  )
   end
 
 end
