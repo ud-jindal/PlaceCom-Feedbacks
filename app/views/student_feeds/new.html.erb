@@ -131,7 +131,7 @@ function showCheckboxes() {
 						<i class="fa fa-user fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :name , :class => 'form-control',placeholder: "Name" %>
+						<%= f.text_field :name , :class => 'form-control',placeholder: "Name" ,:required => true %>
 					</span>
 					<div class="col-sm-1"></div>
 				</div>
@@ -144,7 +144,7 @@ function showCheckboxes() {
 						<i class="fa fa-registered fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :rollno , :class => 'form-control' , placeholder: "Roll Number"%>
+						<%= f.text_field :rollno , :class => 'form-control' , placeholder: "Roll Number" ,:required => true ,:maxlength => 11%>
 					</span>
 					<div class="col-sm-1"></div>	
 				</div>
@@ -156,7 +156,7 @@ function showCheckboxes() {
 						<i class="fa fa-graduation-cap fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-4">
-						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent' }%>	
+						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent'} %>	
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
@@ -169,7 +169,7 @@ function showCheckboxes() {
 						<i class="fa fa-envelope fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :email , :class => 'form-control' ,placeholder: "Email"%>
+						<%= f.email_field :email , :class => 'form-control' ,placeholder: "Email" ,:required => true%>
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
@@ -181,7 +181,7 @@ function showCheckboxes() {
 						<i class="fa fa-mobile fa-3x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :phone_no , :class => 'form-control',placeholder: "Mobile Number"%>
+						<%= f.telephone_field :phone_no , :class => 'form-control',placeholder: "Mobile Number" ,:maxlength => 11%>
 					</span>
 					<!--<div class="col-sm-1"></div>-->
 				</div>
@@ -194,7 +194,7 @@ function showCheckboxes() {
 						<i class="fa fa-calendar fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :year , :class => 'form-control' ,placeholder: "Year"%>
+						<%= f.number_field :year , :class => 'form-control' ,placeholder: "Year:YYYY" ,:required => true , max: 3000,min: 2000%>
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
@@ -213,8 +213,11 @@ function showCheckboxes() {
 					/*<div class="col-xs-4"></div>*/
 				</div>-->
 
-				<div class="multiselect">
+				<div class="row multiselect">
 				    <div class="selectBox" onclick="showCheckboxes()">
+				    	<span class="ccform-addon">
+							<i class="fa fa-building-o fa-2x"></i>
+						</span>
 				    	<select>
 				        	<option>Select an option</option>
 				      	</select>
@@ -239,7 +242,7 @@ function showCheckboxes() {
 						<i class="fa fa-search fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :focus , :class => 'form-control',placeholder: "Key Focuses"%>
+						<%= f.text_field :focus , :class => 'form-control',placeholder: "Key Focuses",:required => true ,:maxlength =>100%>
 					</span>
 					<!--<div class="col-sm-1"></div>-->
 				</div>
@@ -248,7 +251,7 @@ function showCheckboxes() {
 						<i class="fa fa-comments-o fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7 col-md-7" id="feedtext">
-						<%= f.text_area :feeback , :class => 'form-control',placeholder: "Enter Feedback" %>
+						<%= f.text_area :feeback , :class => 'form-control',placeholder: "Enter Feedback",:required => true %>
 					</span>
 				</div>
 			</div>
