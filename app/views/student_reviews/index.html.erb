@@ -35,8 +35,9 @@
   <% end %>
   
   <p id="notice"><%= notice %></p>
-  
+
 <% @user.reverse.each do |studentfeed| %>
+
 <div class="w3-content" style="max-width:1400px">
 
 <div class="w3-row">
@@ -62,7 +63,7 @@
   </div>
   </div>
   <hr style="margin:1px;">
-  
   <% end %>
+  <%= will_paginate @user %></br>
   <%= link_to 'New StudentFeed', new_student_feed_path %></div>
 </body>
