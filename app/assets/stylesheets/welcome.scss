@@ -15,19 +15,21 @@ body{
 }
 
 #header-nav{
-	background: #008B8B;
+	/*background: #008B8B;*/
+	background: #00519C;
 	border: 0px;
 	border-radius: 15px;
 }
 
 #logo-img{
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 150px;
 	margin: 0px 10px 0px 0px;
 }
 
 .navbar-header a:hover, .navbar-header a:focus{
-	background-color:#008B8B;
+	/*background-color:#008B8B;*/
+	background-color: #00519C;
 }
 
 .navbar-brand #main-head1,#main-head2{
@@ -99,7 +101,8 @@ body{
 	bottom: 0;
     height: 150px;
     width: 100%;
-    background:#008B8B;
+    /*background:#008B8B;*/
+    background: #00519C;
     color:white;
 }
 
@@ -126,14 +129,17 @@ body{
 
 .container button{
 	height:15vw;
-	background:#008B8B;
+	/*background:#008B8B;*/
+	background: #00519C;
 	/*border:1px solid #0000A0;*/	
-	box-shadow:8px 8px 10px #20B2AA; 
+	/*box-shadow:8px 8px 10px #20B2AA;*/
+	box-shadow:8px 8px 10px #00519C; 
 }
 
 .container button:active{
 	opacity:0.95;
-	box-shadow:12px 12px 10px #20B2AA;	
+	/*box-shadow:12px 12px 10px #20B2AA;*/
+	box-shadow:12px 12px 10px #00519C;	
 }
 
 .container button:hover{

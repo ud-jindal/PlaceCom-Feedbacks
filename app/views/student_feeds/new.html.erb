@@ -39,7 +39,7 @@
 
 <%= form_for(@studentfeed) do |f| %>
 
-<% if @studentfeed.errors.any? %>
+ <% if @studentfeed.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@studentfeed.errors.count, "error") %> prohibited this user from being saved:</h2>
 
@@ -132,7 +132,7 @@
 					</span>
 					<div class="col-sm-1"></div>	
 				</div>
-				<div class="row dropdown" id="dropdown1">
+				<div class="row dropdown_feed" id="dropdown1">
 					<!--<span class="form-label col-xs-4"><%= f.label :Stream %>
 						<span class="star">*</span>
 					</span>-->
@@ -182,14 +182,14 @@
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
-				<div class="row dropdown" id="dropdown2">
+				<div class="row dropdown_feed" id="dropdown2">
 					<!--<span class="form-label col-xs-4">
 						<%= f.label :Company , :class => 'control-label'%>
 					</span>-->
 					<span class="ccform-addon">
 						<i class="fa fa-building-o fa-2x"></i>
 					</span>
-					<span class="form-fields col-xs-4">
+					<span class="form-fields col-xs-7">
 						<%=f.collection_check_boxes :company_ids,@company,:id,
 						:compname, {:prompt=> 'select companies'}, 
 						 {:multiple=> true, :size=> 1}%> 
@@ -201,7 +201,7 @@
 						<%= f.label :'Phone no.' , :class => 'control-label' %>
 					</span>-->
 					<span class="ccform-addon">
-						<i class="fa fa-mobile fa-3x"></i>
+						<i class="fa fa-search fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
 						<%= f.text_field :focus , :class => 'form-control',placeholder: "Key Focuses"%>
