@@ -30,8 +30,8 @@
 </header>
 <h1 id="sub-review-head">Student's Review</h1>
   <%= form_for(@studentreview) do |f| %>
-  <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
-  <%= f.submit "search"%>
+  <%= f.collection_select :company_id , @company, :id, :compname, {:prompt => 'Select Company'},{:class=>"dropdown"}%>
+  <%= f.submit "search", :class => "button"%>
   <% end %>
   
   <p id="notice"><%= notice %></p>
@@ -52,7 +52,7 @@
     <div class="w3-container">
       <% if studentfeed.feeback.length > 1000 %>
         <%= truncate studentfeed.feeback, length:1000 %>
-        <%= link_to 'read more', studentfeed, :target=>"_blank" %> </td>
+        <p><button class="w3-button w3-padding-large w3-white w3-border"><b><%= link_to 'READ MORE >>>', studentfeed, :target=>"_blank" %></b></button></p>
       <% else %>
         <%= studentfeed.feeback %>
       <% end %>

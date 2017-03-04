@@ -25,3 +25,28 @@
 hr{
 	margin:1px;
 }
+
+.button{
+  background-color: #008B8B; 
+  color: black; 
+  border: 2px solid #008B8B;
+  /*add any other properties you want to style*/
+}
+
+.button:hover {
+    background-color: #008B8B;
+    color: white;
+
+}
+
+.dropdown{
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008B8B;
+  /*add any other properties you want to style*/
+}
+
+.dropdown:hover {
+    background-color: #008B8B;
+    color: white;
+}
