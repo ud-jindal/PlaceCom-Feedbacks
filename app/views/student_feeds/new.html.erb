@@ -1,4 +1,19 @@
 <link rel="stylesheet" href="/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css">
+
+<script>
+var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+</script>
 <header>
 	<nav id="header-nav" class="navbar navbar-default">
 		<div class="container" id="header-container" >
@@ -182,10 +197,10 @@
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
-				<div class="row dropdown_feed" id="dropdown2">
-					<!--<span class="form-label col-xs-4">
+				<!--<div class="row dropdown_feed" id="dropdown2">
+					/*<span class="form-label col-xs-4">
 						<%= f.label :Company , :class => 'control-label'%>
-					</span>-->
+					</span>*/
 					<span class="ccform-addon">
 						<i class="fa fa-building-o fa-2x"></i>
 					</span>
@@ -194,8 +209,27 @@
 						:compname, {:prompt=> 'select companies'}, 
 						 {:multiple=> true, :size=> 1}%> 
 					</span>
-					<!--<div class="col-xs-4"></div>-->
+					/*<div class="col-xs-4"></div>*/
+				</div>-->
+
+				<div class="multiselect">
+				    <div class="selectBox" onclick="showCheckboxes()">
+				    	<select>
+				        	<option>Select an option</option>
+				      	</select>
+				      	<div class="overSelect"></div>
+				    </div>
+				    <div id="checkboxes">
+				      	<label for="one">
+				      	  	<input type="checkbox" id="one" />First checkbox</label>
+				      	<label for="two">
+				       	 	<input type="checkbox" id="two" />Second checkbox</label>
+				      	<label for="three">
+				        	<input type="checkbox" id="three" />Third checkbox</label>
+				    </div>
 				</div>
+
+
 				<div class="row form-group">
 					<!--<span class="form-label col-xs-4">
 						<%= f.label :'Phone no.' , :class => 'control-label' %>
