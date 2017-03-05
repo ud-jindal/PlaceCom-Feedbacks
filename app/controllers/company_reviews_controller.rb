@@ -1,4 +1,5 @@
 class CompanyReviewsController < ApplicationController
+  before_action :set_companyreview, only: [:show]
 	def index
 		@company= Company.all
 		begin
@@ -11,6 +12,11 @@ class CompanyReviewsController < ApplicationController
 	end
 	def post_params
   		params.require(:company_review).permit(:company_id )
-  	end
+  end
+  def show
+  end
+  def set_companyreview
+    @companyreview= CompanyReview.find(params[:id]) 
+  end
 
 end

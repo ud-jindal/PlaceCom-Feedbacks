@@ -13,5 +13,7 @@ class WelcomeController < ApplicationController
 	def post_params
   		params.require(:company_review).permit(:company_id )
   	end
-
+  def set_studentfeed
+    @studentfeed= StudentFeed.find(params[:id]) 
+  end
 end
