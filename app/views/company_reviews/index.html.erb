@@ -28,47 +28,40 @@
 <tbody>
 <h1 id="sub-comp-head"> COMPANY REVIEWS </h1>
 	<%= form_for(@companyreview) do |f| %>
-    <%= f.collection_select :company_id , @company, :id, :compname, :prompt => 'Select Company'%>
-    <%= f.submit "search"%>
+    <%= f.collection_select :company_id , @company, :id, :compname, {:prompt => 'Select Company'},{:class=>"dropdown"}%>
+    <%= f.submit "search", :class => "button"%>
     <% end %>
-<!--<% @user.each do |companyreview| %>
-	<tr>
-	<p>
-  <strong>Company:</strong>
-  <%= companyreview.name %>
-</p>
+     <% @user.each do |companyreview| %>
 
-<p>
-  <strong>year:</strong>
-  <%= companyreview.year %>
-</p>
+    <div>
+    <div class="w3-content" style="max-width:1400px">
+      <div class="col-md-2"></div>
+      <div class="row">
+      <div class="col-xs-12 col-md-8" id = "box">
+        <div class="w3-col ">
+          <div class="w3-card-4 w3-margin w3-white">
+            <div class="w3-container w3-padding-8">
+              <h3 class = "left"><b><%= companyreview.name %></b></h3>
+              <h5 class ="right"><span class="w3-opacity" ><%= companyreview.year %></span></h5>
+            </div>
 
-<p>
-  <strong>feedback:</strong>
-  <%= companyreview.feedback %>
-</p>
-	</tr>
-<% end %>-->
-<div class = "main">
-  <table class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
-  <tr>
-    <th width= 10%>Company Name</th>
-    <th width= 15%>Year</th>
-    <th width= 75%>Company Feedback</th>
-  </tr>
-<% @user.each do |companyreview| %>
-  <tr>
-    <td width= 10%><%= companyreview.name %></td>
-    <td width= 15%><%= companyreview.year %></td>
-    <td width= 75%>
-      <% if companyreview.feedback.length > 1000 %>
-        <%= truncate companyreview.feedback, length:1000 %>
-        <%= link_to '...read more', companyreview %> </td>
-      <% else %>
-        <%= companyreview.feedback %>
-      <% end %>
-  </tr>
-<% end %>
-</table>
-</div>
-</tbody>
+            <div class="w3-container">
+            <% if companyreview.feedback.length > 1000 %>
+              <%= truncate companyreview.feeback, length:1000 %>
+              <p><button class="w3-button w3-padding-large w3-white w3-border"><b><%= link_to 'READ MORE >>>', companyreview, :target=>"_blank" %></b></button></p>
+              <% else %>
+              <%= companyreview.feeback %>
+            <% end %>
+
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <hr style="margin:1px;">
+    <% end %>
+  
+ </tbody>
