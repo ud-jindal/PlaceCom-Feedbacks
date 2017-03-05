@@ -2,7 +2,8 @@ class StudentFeedsController < ApplicationController
   before_action :set_studentfeed, only: [:show]  
   def new
     @studentfeed= StudentFeed.new
-  	@company= Company.all
+  	@company1= Company.all
+    @company= @company1.select("id, compname")
 
   end
   def create
