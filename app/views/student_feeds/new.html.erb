@@ -161,7 +161,7 @@ function showCheckboxes() {
 						<i class="fa fa-graduation-cap fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-4">
-						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent'} %>	
+						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent',:required => true} %>	
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
@@ -232,19 +232,20 @@ function showCheckboxes() {
 							<i class="fa fa-building-o fa-2x"></i>
 						</span>
 						<span class="form-fields col-xs-4">
-				    	<select>
-				        	<option>Select Company</option>
-				      	</select>
-				      	<span class="overSelect"></span>
-				      	<span id="checkboxes" class ="sub-menu-parent">
-				    	<% @company.each do |company| %>
-				      	<label for="student_feed_company_ids_<%=company.id%>">
-				      	  	<input type="checkbox" name="student_feed[company_ids][]" id="student_feed_company_ids_<%=company.id%>"
-				      	  	value="<%= company.id%>"> <%= company.compname%> 
-				      	</label>
-				      	<%end%>
-				    </span>  	
-				    </span>
+				    		<select>
+				        		<option>Select Company</option>
+				      		</select>
+				      		<span class="overSelect">
+				      			<span id="checkboxes" class ="sub-menu-parent">
+				    				<% @company.each do |company| %>
+				      				<label for="student_feed_company_ids_<%=company.id%>">
+				      	  			<input type="checkbox" name="student_feed[company_ids][]" id="student_feed_company_ids_<%=company.id%>"
+				      	  			value="<%= company.id%>" > <%= company.compname%> 
+				      				</label>
+				      				<%end%>
+				    			</span>
+				    		</span>  	
+				    	</span>
 				    </span>
 				    
 				</div>
