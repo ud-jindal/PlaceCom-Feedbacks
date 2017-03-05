@@ -217,18 +217,26 @@ function showCheckboxes() {
 					</span>
 					/*<div class="col-xs-4"></div>*/
 				</div>-->
-
-				<div class="row multiselect">
-				    <div class="selectBox" onclick="showCheckboxes()">
+				<!-- <div class="row dropdown_feed" id="dropdown1">
+					<span class="ccform-addon">
+						<i class="fa fa-graduation-cap fa-2x"></i>
+					</span>
+					<span class="form-fields col-xs-4">
+						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent'} %>	
+					</span>
+					
+				</div> -->
+				<div class="row dropdown_feed" id="dropdown1">
+				    <span class="selectBox" onclick="showCheckboxes()">
 				    	<span class="ccform-addon">
 							<i class="fa fa-building-o fa-2x"></i>
 						</span>
 				    	<select>
 				        	<option>Select Company</option>
 				      	</select>
-				      	<div class="overSelect"></div>
-				    </div>
-				    <div id="checkboxes">
+				      	<span class="overSelect"></span>
+				    </span>
+				    <span id="checkboxes" class ="sub-menu-parent">
 				    	<% @company.each do |company| %>
 				      	<label for="student_feed_company_ids_<%=company.id%>">
 				      	  	<input type="checkbox" name="student_feed[company_ids][]" id="student_feed_company_ids_<%=company.id%>"
@@ -236,7 +244,7 @@ function showCheckboxes() {
 				      	</label>
 				      	<%end%>
 				      	
-				    </div>
+				    </span>
 				</div>
 				
 

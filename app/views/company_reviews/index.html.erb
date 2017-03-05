@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  
+
 <header>
   <nav id="header-nav" class="navbar navbar-default">
     <div class="container" id="header-container" >
@@ -27,7 +31,7 @@
 
 <tbody>
 <h1 id="sub-comp-head"> COMPANY REVIEWS </h1>
-	<%= form_for(@companyreview) do |f| %>
+  <%= form_for(@companyreview) do |f| %>
     <%= f.collection_select :company_id , @company, :id, :compname, {:prompt => 'Select Company'},{:class=>"dropdown"}%>
     <%= f.submit "search", :class => "button"%>
     <% end %>
@@ -47,10 +51,10 @@
 
             <div class="w3-container">
             <% if companyreview.feedback.length > 1000 %>
-              <%= truncate companyreview.feedback, length:1000 %>
+              <%= truncate companyreview.feeback, length:1000 %>
               <p><button class="w3-button w3-padding-large w3-white w3-border"><b><%= link_to 'READ MORE >>>', companyreview, :target=>"_blank" %></b></button></p>
               <% else %>
-              <%= companyreview.feedback %>
+              <%= companyreview.feeback %>
             <% end %>
 
         
