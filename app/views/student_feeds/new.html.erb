@@ -231,20 +231,22 @@ function showCheckboxes() {
 				    	<span class="ccform-addon">
 							<i class="fa fa-building-o fa-2x"></i>
 						</span>
+						<span class="form-fields col-xs-4">
 				    	<select>
 				        	<option>Select Company</option>
 				      	</select>
 				      	<span class="overSelect"></span>
-				    </span>
-				    <span id="checkboxes" class ="sub-menu-parent">
+				      	<span id="checkboxes" class ="sub-menu-parent">
 				    	<% @company.each do |company| %>
 				      	<label for="student_feed_company_ids_<%=company.id%>">
 				      	  	<input type="checkbox" name="student_feed[company_ids][]" id="student_feed_company_ids_<%=company.id%>"
 				      	  	value="<%= company.id%>"> <%= company.compname%> 
 				      	</label>
 				      	<%end%>
-				      	
+				    </span>  	
 				    </span>
+				    </span>
+				    
 				</div>
 				
 
