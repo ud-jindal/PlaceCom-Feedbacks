@@ -28,6 +28,22 @@
 	font-size:1.2em;
 }
 
+/*::-webkit-validation-bubble-message {
+    visibility:hidden;
+}
+
+.feedback-form input:invalid, .feedback-form textarea:invalid { 
+    background: #fff url(images/invalid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
+}
+
+.feedback-form input:required:valid, .feedback-form textarea:required:valid { 
+    background: #fff url(images/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}*/
+
 .star{
 	color:red;
 	font-size:0.8em;
@@ -137,6 +153,11 @@ textarea{
 #feedtext{
 	margin-bottom:5px;
 }
+
+
+
+
+
 
 .submit_sub_btn{
 	margin-bottom:51px;
