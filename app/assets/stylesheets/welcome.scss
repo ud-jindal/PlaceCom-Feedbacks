@@ -179,6 +179,10 @@ body{
 	margin-bottom:179px;
 }
 
+.break{
+	margin-bottom:250px;
+}
+
 /*.container button a{
 	position:absolute;
 	bottom:0;
@@ -210,6 +214,10 @@ body{
 
 	#first-button{
 		margin-left:auto;
+	}
+
+	#first-button,#second-button{
+		margin-bottom:25px;
 	}
 
 	#form-img{
@@ -256,6 +264,7 @@ body{
 
 	#first-button{
 		margin-left:auto;
+
 	}
 	#form-img{
 		width:20vw;
