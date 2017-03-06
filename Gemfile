@@ -19,6 +19,7 @@ gem "clearance"
 gem 'jquery-rails'
 gem "mocha"
 gem 'validates_email_format_of'
+gem 'font-awesome-sass', '~> 4.7.0'
 #gem 'will_paginate', "3.0.pre2"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
