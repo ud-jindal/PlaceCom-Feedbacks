@@ -52,4 +52,4 @@ production:
   <<: *default
   database: placecom_feed_production
   username: root
-  password: Jindal.house36
+  password: 
