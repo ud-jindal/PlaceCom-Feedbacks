@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: 
+  password: Jindal.house36
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
 
@@ -51,5 +51,5 @@ test:
 production:
   <<: *default
   database: placecom_feed_production
-  username: placecom_feed
-  password: <%= ENV['PLACECOM_FEED_DATABASE_PASSWORD'] %>
+  username: root
+  password: Jindal.house36
