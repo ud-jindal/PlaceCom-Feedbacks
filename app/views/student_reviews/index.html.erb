@@ -54,7 +54,7 @@
             <hr>
             <b>Feedback:</b><% if studentfeed.feeback.length > 1000 %>
               <%= truncate studentfeed.feeback, length:1000 %>
-              <p><button class="w3-button w3-padding-large w3-white w3-border"><b><%= link_to 'READ MORE >>>', studentfeed, :target=>"_blank" %></b></button></p>
+              <p><b><%= link_to '<button class="w3-button w3-padding-large w3-white w3-border">READ MORE >>></button>'.html_safe, studentfeed, :target=>"_blank" %></b></p>
               <% else %>
               <%= studentfeed.feeback %>
             <% end %>
