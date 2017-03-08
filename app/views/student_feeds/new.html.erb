@@ -228,9 +228,17 @@ function showCheckboxes() {
 							<i class="fa fa-building-o fa-2x"></i>
 					</span>
 					<div class="form-fields col-xs-4">
+						<select name="langOpt[]" multiple id="langOpt">
+							<option value="C++">C++</option>
+							<option value="C#">C#</option>
+							<option value="Java">Java</option>
+							<option value="Objective-C">Objective-C</option>
+						</select>
+					</div>
+					<!-- <div class="form-fields col-xs-4">
 					    <span class="selectBox" onclick="showCheckboxes()">
 					    	
-							<!-- <span class="form-fields col-xs-4"> -->
+							/* <span class="form-fields col-xs-4"> */
 					    		<select>
 					        		<option>Select Company</option>
 					      		</select>
@@ -244,7 +252,7 @@ function showCheckboxes() {
 					      		</label>
 					      	<%end%>
 					    </span>
-					</div>    
+					</div> -->    
 				</div>
 				
 
@@ -292,3 +300,11 @@ function showCheckboxes() {
 	</div>
 </form>
 <% end %>
+<script src="/stylesheets/jquery.min.js"></script>
+<script src="/stylesheets/jquery.multiselect.js"></script>
+<script>
+	$('#langOpt').multiselect({
+		columns: 1,
+		placeholder: 'Select Company'
+	});
+</script>	
