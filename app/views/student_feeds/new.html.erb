@@ -213,39 +213,8 @@
 							<i class="fa fa-building-o fa-2x"></i>
 					</span>
 					<div class="form-fields col-xs-7">
-						<select name="langOpt[]" multiple id="langOpt">
-							<option value="C++">C++</option>
-							<option value="C#">C#</option>
-							<option value="Java">Java</option>
-							<option value="Objective-C">Objective-C</option>
-							<option value="JavaScript">JavaScript</option>
-							<option value="Perl">Perl</option>
-							<option value="PHP">PHP</option>
-							<option value="Ruby on Rails">Ruby on Rails</option>
-							<option value="Android">Android</option>
-							<option value="iOS">iOS</option>
-							<option value="HTML">HTML</option>
-							<option value="XML">XML</option>
-						</select>
-					</div>
-					<!-- <div class="form-fields col-xs-4">
-					    <span class="selectBox" onclick="showCheckboxes()">
-					    	
-							/* <span class="form-fields col-xs-4"> */
-					    		<select>
-					        		<option>Select Company</option>
-					      		</select>
-					      		<span class="overSelect"></span>
-					    </span>
-					    <span id="checkboxes" class ="sub-menu-parent">
-					    	<% @company.each do |company| %>
-					      		<label for="student_feed_company_ids_<%=company.id%>">
-					      	  		<input type="checkbox" name="student_feed[company_ids][]" id="student_feed_company_ids_<%=company.id%>"
-					      	  			value="<%= company.id%>" > <%= company.compname%> 
-					      		</label>
-					      	<%end%>
-					    </span>
-					</div> -->    
+						<%=  f.collection_select :company_ids, @company,:id,:compname , {},{multiple: true, id:'langOpt'} %>
+					</div>   
 				</div>
 				
 
@@ -309,7 +278,8 @@
 // }
 $('#langOpt').multiselect({
     columns: 1,
-    placeholder: 'Select Languages'
+    placeholder: 'Select Company',
+    search: true
 });
 </script>
 <% end %>
