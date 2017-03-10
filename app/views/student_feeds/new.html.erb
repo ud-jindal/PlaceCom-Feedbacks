@@ -1,20 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css">
 
-<script>
-var expanded = false;
-
-function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-</script>
-
 
 
 <header>
@@ -157,7 +142,7 @@ function showCheckboxes() {
 					<span class="ccform-addon">
 						<i class="fa fa-graduation-cap fa-2x"></i>
 					</span>
-					<span class="form-fields col-xs-4">
+					<span class="form-fields col-xs-7">
 						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent',:required => true} %>	
 					</span>
 					<!--<div class="col-xs-1"></div>-->
@@ -227,12 +212,20 @@ function showCheckboxes() {
 				    <span class="ccform-addon">
 							<i class="fa fa-building-o fa-2x"></i>
 					</span>
-					<div class="form-fields col-xs-4">
+					<div class="form-fields col-xs-7">
 						<select name="langOpt[]" multiple id="langOpt">
 							<option value="C++">C++</option>
 							<option value="C#">C#</option>
 							<option value="Java">Java</option>
 							<option value="Objective-C">Objective-C</option>
+							<option value="JavaScript">JavaScript</option>
+							<option value="Perl">Perl</option>
+							<option value="PHP">PHP</option>
+							<option value="Ruby on Rails">Ruby on Rails</option>
+							<option value="Android">Android</option>
+							<option value="iOS">iOS</option>
+							<option value="HTML">HTML</option>
+							<option value="XML">XML</option>
 						</select>
 					</div>
 					<!-- <div class="form-fields col-xs-4">
@@ -299,12 +292,24 @@ function showCheckboxes() {
 		<div class="col-xs-4"></div>
 	</div>
 </form>
-<% end %>
 <script src="/stylesheets/jquery.min.js"></script>
 <script src="/stylesheets/jquery.multiselect.js"></script>
 <script>
-	$('#langOpt').multiselect({
-		columns: 1,
-		placeholder: 'Select Company'
-	});
-</script>	
+// var expanded = false;
+
+// function showCheckboxes() {
+//   var checkboxes = document.getElementById("checkboxes");
+//   if (!expanded) {
+//     checkboxes.style.display = "block";
+//     expanded = true;
+//   } else {
+//     checkboxes.style.display = "none";
+//     expanded = false;
+//   }
+// }
+$('#langOpt').multiselect({
+    columns: 1,
+    placeholder: 'Select Languages'
+});
+</script>
+<% end %>
