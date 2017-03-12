@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  contact_name: MyString
+  email: MyString
+  phone_no: MyString
+  domain: MyString
+  years: 1
+  rating: 1
+  compensation_to_tier1: 1
+  remark: MyText
+  established_startup: false
+  iiitb_share: MyText
+  no_of_alumni_in_company: 1
+
+two:
+  name: MyString
+  contact_name: MyString
+  email: MyString
+  phone_no: MyString
+  domain: MyString
+  years: 1
+  rating: 1
+  compensation_to_tier1: 1
+  remark: MyText
+  established_startup: false
+  iiitb_share: MyText
+  no_of_alumni_in_company: 1
