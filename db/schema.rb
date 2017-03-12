@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304175216) do
+ActiveRecord::Schema.define(version: 20170312164241) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "compname",              limit: 255
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(version: 20170304175216) do
   create_table "companies_student_feeds", id: false, force: :cascade do |t|
     t.integer "company_id",      limit: 4
     t.integer "student_feed_id", limit: 4
+  end
+
+  create_table "company_data", force: :cascade do |t|
+    t.string   "name",                    limit: 255
+    t.string   "contact_name",            limit: 255
+    t.string   "email",                   limit: 255
+    t.string   "phone_no",                limit: 255
+    t.string   "domain",                  limit: 255
+    t.integer  "years",                   limit: 4
+    t.integer  "rating",                  limit: 4
+    t.integer  "compensation_to_tier1",   limit: 4
+    t.text     "remark",                  limit: 65535
+    t.boolean  "established_startup"
+    t.text     "iiitb_share",             limit: 65535
+    t.integer  "no_of_alumni_in_company", limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "company_reviews", force: :cascade do |t|
