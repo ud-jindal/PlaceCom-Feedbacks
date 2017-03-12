@@ -1,0 +1,47 @@
+current directory: /home/zense/PlaceCom-Feedbacks/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+/usr/local/rvm/rubies/ruby-2.3.3/bin/ruby -r ./siteconf20170308-19886-7fq9gn.rb extconf.rb
+checking for main() in -lpthread... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/zense/PlaceCom-Feedbacks/vendor/bundle/ruby/2.3.0/extensions/x86_64-linux/2.3.0/therubyracer-0.12.3/mkmf.log
+
+current directory: /home/zense/PlaceCom-Feedbacks/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR=" clean
+
+current directory: /home/zense/PlaceCom-Feedbacks/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR="
+compiling exception.cc
+compiling signature.cc
+compiling constraints.cc
+compiling stack.cc
+compiling v8.cc
+compiling object.cc
+compiling rr.cc
+compiling context.cc
+compiling gc.cc
+compiling accessor.cc
+compiling array.cc
+compiling init.cc
+compiling script.cc
+compiling primitive.cc
+compiling handles.cc
+compiling template.cc
+compiling trycatch.cc
+compiling heap.cc
+compiling backref.cc
+compiling locker.cc
+compiling string.cc
+compiling message.cc
+compiling constants.cc
+compiling invocation.cc
+compiling date.cc
+compiling value.cc
+compiling external.cc
+compiling function.cc
+linking shared-object v8/init.so
+
+current directory: /home/zense/PlaceCom-Feedbacks/vendor/bundle/ruby/2.3.0/gems/therubyracer-0.12.3/ext/v8
+make "DESTDIR=" install
+/usr/bin/install -m 0755 init.so ./.gem.20170308-19886-p78uq/v8
