@@ -51,10 +51,10 @@
 
             <div class="w3-container">
             <% if companyreview.feedback.length > 1000 %>
-              <%= truncate companyreview.feedback, length:1000 %>
+              <%=raw companyreview.feedback.truncate(1000) %>
               <p><b><%= link_to '<button class="w3-button w3-padding-large w3-white w3-border">READ MORE >>></button>'.html_safe, companyreview, :target=>"_blank" %></b></p>
               <% else %>
-              <%= companyreview.feedback %>
+              <%=raw companyreview.feedback %>
             <% end %>
 
         
