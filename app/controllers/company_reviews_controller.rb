@@ -1,7 +1,7 @@
 class CompanyReviewsController < ApplicationController
   before_action :set_companyreview, only: [:show]
 	def index
-		@company= Company.all
+		@company= Company.order(:compname)
 		begin
     		@companyreview= CompanyReview.new(post_params)
     		@user= CompanyReview.where(company_id: @companyreview.company_id)

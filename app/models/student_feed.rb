@@ -1,7 +1,7 @@
 class StudentFeed < ActiveRecord::Base
   has_and_belongs_to_many :companies
-  validates :rollno, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true, 
+  validates :rollno, presence: true
+  validates :email, presence: true, 
   email_format: { message: "doesn't look like an email address" }
   validates :year, presence: true, 
   			length: {is: 4}

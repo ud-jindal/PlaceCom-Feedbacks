@@ -1,10 +1,11 @@
 class StudentReviewsController < ApplicationController
 	def index
-		@company= Company.all
+		@company= Company.order(:compname)
+
 		begin
     		@studentreview= StudentReview.new(post_params)
     		@user1= Company.find(@studentreview.company_id)
-        @user= @user1.student_feeds #.paginate(page: params[:page], per_page: 6)
+        	@user= @user1.student_feeds #.paginate(page: params[:page], per_page: 6)
 
     	rescue
     		@studentreview= StudentReview.new

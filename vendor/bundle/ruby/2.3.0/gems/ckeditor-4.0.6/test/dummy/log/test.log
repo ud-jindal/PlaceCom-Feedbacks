@@ -1,0 +1,1425 @@
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20110623120047)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "info" text, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110623120047')
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "ckeditor_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar(255) NOT NULL, "data_content_type" varchar(255), "data_file_size" integer, "assetable_id" integer, "assetable_type" varchar(30), "type" varchar(30), "width" integer, "height" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "idx_ckeditor_assetable_type" ON "ckeditor_assets" ("assetable_type", "type", "assetable_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('idx_ckeditor_assetable_type')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "idx_ckeditor_assetable" ON "ckeditor_assets" ("assetable_type", "assetable_id")[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (11.8ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007faa24b64740 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130705-21007-1yha2gu>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered text template (0.0ms)
+Completed 200 OK in 57ms (Views: 41.5ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007faa217ea3b0 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130705-21007-4q3mt0>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>"rails.tar.gz"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Fri, 05 Jul 2013 19:34:42 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/attachment_files
+Completed 302 Found in 15ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::AttachmentFilesController#index as HTML
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (1.0ms)
+Completed 200 OK in 25ms (Views: 24.0ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p1.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p1.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p120130705-21007-j5m172'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p1.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p1.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p120130705-21007-1h6uciz'
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1p5s1p1.png[0]'
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007faa249e2f98 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130705-21007-et6xpi>>, "CKEditor"=>"ckeditor_field"}
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq20130705-21007-6mibxn'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq20130705-21007-2nd6bh'
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-10hjxgq.png[0]'
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 112ms (Views: 1.2ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007faa24b7e988 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130705-21007-t3v4ri>>}
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb5.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb5.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb520130705-21007-1q7et6e'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb5.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb5.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb520130705-21007-9arqmk'
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-c9iyb5.png[0]'
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 152ms (Views: 0.5ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>"rails.png"}
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg0.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg0.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg020130705-21007-1xkl3kj'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg0.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg0.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg020130705-21007-j1cxh5'
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-1nxdkg0.png[0]'
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 112ms (Views: 0.6ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d20130705-21007-ah2mu5'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d20130705-21007-1n3dqes'
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130705-21007-je4m2d.png[0]'
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::Picture Load (0.4ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/pictures
+Completed 302 Found in 9ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::PicturesController#index as HTML
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (0.4ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Fri, 05 Jul 2013 19:34:43 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (5.1ms)
+Completed 200 OK in 14ms (Views: 13.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Fri, 05 Jul 2013 19:34:44 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Fri, 05 Jul 2013 19:34:44 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "content"], ["created_at", Fri, 05 Jul 2013 19:34:44 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Fri, 05 Jul 2013 19:34:44 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Fri, 05 Jul 2013 19:34:44 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Fri, 05 Jul 2013 19:34:44 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_form.html.erb (2.7ms)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20110623120047)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "info" text, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110623120047')
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "ckeditor_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar(255) NOT NULL, "data_content_type" varchar(255), "data_file_size" integer, "assetable_id" integer, "assetable_type" varchar(30), "type" varchar(30), "width" integer, "height" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "idx_ckeditor_assetable_type" ON "ckeditor_assets" ("assetable_type", "type", "assetable_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('idx_ckeditor_assetable_type')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "idx_ckeditor_assetable" ON "ckeditor_assets" ("assetable_type", "assetable_id")[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (3.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["width", nil]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fbbdedfa178 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-29413-ryx85n>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered text template (0.0ms)
+Completed 200 OK in 60ms (Views: 43.6ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fbbded56cf8 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-29413-1av5cg0>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["width", nil]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>"rails.tar.gz"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::AttachmentFile Load (0.3ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/attachment_files
+Completed 302 Found in 14ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::AttachmentFilesController#index as HTML
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (1.1ms)
+Completed 200 OK in 51ms (Views: 49.2ms | ActiveRecord: 0.2ms)
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:09:59 UTC +00:00], ["width", 50]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fbbdeb03c30 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-29413-1kbv7nf>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 233ms (Views: 37.5ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fbbdc293278 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-29413-ezayf3>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["width", 50]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 196ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.3ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>"rails.png"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 192ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::Picture Load (0.3ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/pictures
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::PicturesController#index as HTML
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (0.7ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (9.8ms)
+Completed 200 OK in 19ms (Views: 18.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+Completed 500 Internal Server Error in 11ms
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+Completed 500 Internal Server Error in 7ms
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:10:00 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_form.html.erb (2.9ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20110623120047)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "info" text, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110623120047')
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "ckeditor_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar(255) NOT NULL, "data_content_type" varchar(255), "data_file_size" integer, "assetable_id" integer, "assetable_type" varchar(30), "type" varchar(30), "width" integer, "height" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "idx_ckeditor_assetable_type" ON "ckeditor_assets" ("assetable_type", "type", "assetable_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('idx_ckeditor_assetable_type')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "idx_ckeditor_assetable" ON "ckeditor_assets" ("assetable_type", "assetable_id")[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (3.5ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["width", nil]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fe14cf7ead8 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-30276-2g8l4l>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered text template (0.0ms)
+Completed 200 OK in 61ms (Views: 44.5ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fe14c829f80 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-30276-1m4vrcs>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["width", nil]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>"rails.tar.gz"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:46:11 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/attachment_files
+Completed 302 Found in 12ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::AttachmentFilesController#index as HTML
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (1.0ms)
+Completed 200 OK in 50ms (Views: 48.9ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["width", 50]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fe14cef47c0 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-30276-1f87wyg>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 226ms (Views: 35.7ms | ActiveRecord: 0.8ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fe14a945790 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-30276-ux47yo>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["width", 50]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 190ms (Views: 0.5ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>"rails.png"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 191ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:46:12 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::Picture Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/pictures
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::PicturesController#index as HTML
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (0.4ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (9.7ms)
+Completed 200 OK in 19ms (Views: 18.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:46:13 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_form.html.erb (2.6ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20110623120047)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "info" text, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110623120047')
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "ckeditor_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar(255) NOT NULL, "data_content_type" varchar(255), "data_file_size" integer, "assetable_id" integer, "assetable_type" varchar(30), "type" varchar(30), "width" integer, "height" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "idx_ckeditor_assetable_type" ON "ckeditor_assets" ("assetable_type", "type", "assetable_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('idx_ckeditor_assetable_type')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "idx_ckeditor_assetable" ON "ckeditor_assets" ("assetable_type", "assetable_id")[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.3ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", nil]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fd19ecb2858 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-30380-g7yq2>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered text template (0.0ms)
+Completed 200 OK in 55ms (Views: 39.8ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fd19b880418 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-30380-1h5r1vz>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", nil]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>"rails.tar.gz"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails.tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", nil]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/attachment_files
+Completed 302 Found in 12ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::AttachmentFilesController#index as HTML
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (1.0ms)
+Completed 200 OK in 43ms (Views: 42.0ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", 50]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fd19eb74310 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-30380-19b89s2>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:16 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 223ms (Views: 36.8ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fd19b9750a8 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-30380-q0ekrm>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["width", 50]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 191ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>"rails.png"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 189ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["width", 50]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::Picture Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/pictures
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::PicturesController#index as HTML
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (0.4ms)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (9.4ms)
+Completed 200 OK in 17ms (Views: 16.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:17 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_form.html.erb (2.7ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20110623120047)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "info" text, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110623120047')
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "ckeditor_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar(255) NOT NULL, "data_content_type" varchar(255), "data_file_size" integer, "assetable_id" integer, "assetable_type" varchar(30), "type" varchar(30), "width" integer, "height" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "idx_ckeditor_assetable_type" ON "ckeditor_assets" ("assetable_type", "type", "assetable_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("ckeditor_assets")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('idx_ckeditor_assetable_type')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "idx_ckeditor_assetable" ON "ckeditor_assets" ("assetable_type", "assetable_id")[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (10.3ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:35 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:35 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fd8ac99e530 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-30449-1npk3sv>>, "CKEditor"=>"ckeditor_field"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:35 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:35 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered text template (0.0ms)
+Completed 200 OK in 31ms (Views: 16.3ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fd8acfbe2f8 @content_type="application/x-gzip", @original_filename="rails.tar.gz", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.tar.gz20130905-30449-24p716>>}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:35 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:35 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 37ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.3ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>"rails.tar.gz"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "application/x-gzip"], ["data_file_name", "rails_tar.gz"], ["data_file_size", 6823], ["height", nil], ["type", "Ckeditor::AttachmentFile"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", nil]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+Processing by Ckeditor::AttachmentFilesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::AttachmentFile Load (0.3ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/attachments/1/rails_tar.gz
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/attachment_files
+Completed 302 Found in 13ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::AttachmentFilesController#index as HTML
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (1.0ms)
+Completed 200 OK in 22ms (Views: 21.1ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::AttachmentFile Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+Processing by Ckeditor::AttachmentFilesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')[0m
+  [1m[35mCkeditor::AttachmentFile Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::AttachmentFile')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa20130905-30449-1yey8cs'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa20130905-30449-7ounou'
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1q505oa.png[0]'
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"upload"=>#<Rack::Test::UploadedFile:0x007fd8aab34d60 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-30449-1hmng3h>>, "CKEditor"=>"ckeditor_field"}
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv0.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv0.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv020130905-30449-1cfjda8'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv0.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv0.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv020130905-30449-1eb0mt'
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1kdjyv0.png[0]'
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 109ms (Views: 1.0ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>#<Rack::Test::UploadedFile:0x007fd8aad57ca0 @content_type="image/png", @original_filename="rails.png", @tempfile=#<File:/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails.png20130905-30449-1houlha>>}
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm20130905-30449-c5s9lm'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm20130905-30449-1f9gdd5'
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-oxptmm.png[0]'
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 109ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+[paperclip] Scheduling attachments for deletion.
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?[0m  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>"rails.png"}
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl20130905-30449-1072i2i'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl20130905-30449-13rwred'
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-2wfbjl.png[0]'
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 200 OK in 158ms (Views: 0.5ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.3ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw.png[0]' -resize "800>" '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw20130905-30449-kvvdrx'
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw.png[0]'
+[32mCommand[0m :: convert '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw.png[0]' -resize "118x" -crop "118x100+0+25" +repage '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw20130905-30449-1xiqyr3'
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+[32mCommand[0m :: identify -format %wx%h '/var/folders/71/5yz8chj16q7b39l_4500ryfc0000gn/T/rails20130905-30449-1tquplw.png[0]'
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ckeditor_assets" ("assetable_id", "assetable_type", "created_at", "data_content_type", "data_file_name", "data_file_size", "height", "type", "updated_at", "width") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["assetable_id", nil], ["assetable_type", nil], ["created_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["data_content_type", "image/png"], ["data_file_name", "rails.png"], ["data_file_size", 6646], ["height", 64], ["type", "Ckeditor::Picture"], ["updated_at", Thu, 05 Sep 2013 08:49:36 UTC +00:00], ["width", 50]]
+[paperclip] Saving attachments.
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+Processing by Ckeditor::PicturesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCkeditor::Picture Load (0.2ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+[paperclip] Scheduling attachments for deletion.
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') AND "ckeditor_assets"."id" = ?  [["id", 1]]
+[paperclip] Deleting attachments.
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/original_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/content_rails.png
+[paperclip] deleting /Volumes/Data/mario/www/gems/ckeditor/test/dummy/public/ckeditor_assets/pictures/1/thumb_rails.png
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/ckeditor/pictures
+Completed 302 Found in 8ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Processing by Ckeditor::PicturesController#index as HTML
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture') ORDER BY id desc
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset.html.erb (0.0ms)
+  Rendered /Volumes/Data/mario/www/gems/ckeditor/app/views/ckeditor/shared/_asset_tmpl.html.erb (0.4ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.1ms)
+  [1m[36mCkeditor::Picture Load (0.1ms)[0m  [1mSELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+Processing by Ckeditor::PicturesController#create as HTML
+  Parameters: {"qqfile"=>nil}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')[0m
+  [1m[35mCkeditor::Picture Load (0.1ms)[0m  SELECT "ckeditor_assets".* FROM "ckeditor_assets" WHERE "ckeditor_assets"."type" IN ('Ckeditor::Picture')
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (10.4ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("content", "created_at", "info", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["content", "content"], ["created_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00], ["info", "info"], ["title", "test"], ["updated_at", Thu, 05 Sep 2013 08:49:37 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_form.html.erb (2.6ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction

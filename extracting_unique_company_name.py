@@ -10,7 +10,7 @@ workbook_name = 'Sheet1'
 
 
 def connect_to_db():
-    return MySQLdb.connect("localhost", "root", "Jindal.house36", "placecom_feed_development")
+    return MySQLdb.connect("localhost", "root", "Jindal.house36", "placecom_feed_production")
 
 
 def enable_unicode_on_db(db, cursor):
