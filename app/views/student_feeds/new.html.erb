@@ -226,7 +226,7 @@
 						<i class="fa fa-search fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.text_field :focus , :class => 'form-control',placeholder: "Key Focuses",:required => true ,:maxlength =>100%>
+						<%= f.text_field :focus , :class => 'form-control',placeholder: "Key Focuses Ex:geekforgeeks, stackoverflow",:required => true ,:maxlength =>100%>
 					</span>
 					<!--<div class="col-sm-1"></div>-->
 				</div>
@@ -235,7 +235,8 @@
 						<i class="fa fa-comments-o fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7 col-md-7" id="feedtext">
-						<%= f.cktext_area :feeback , :class => 'form-control',rows: 10,placeholder: "Enter Feedback",:required => true %>
+
+						<%= f.text_area :feeback, class: "tinymce form-control",rows: 10 %>
 					</span>
 				</div>
 			</div>
@@ -252,6 +253,9 @@
 					</span>
 			</div>-->
 		</div>
+	<script>
+		console.log("abc")
+	</script>
 	<div class="col-xs-2 col-md-2"></div>	
 	<div class="row" id="submit">
 		<div class="col-xs-4"></div>
@@ -260,6 +264,7 @@
 		</span>
 		<div class="col-xs-4"></div>
 	</div>
+
 </form>
 <script src="/stylesheets/jquery.min.js"></script>
 <script src="/stylesheets/jquery.multiselect.js"></script>
@@ -283,3 +288,5 @@ $('#langOpt').multiselect({
 });
 </script>
 <% end %>
+<%= tinymce %>
+

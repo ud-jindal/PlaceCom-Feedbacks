@@ -21,6 +21,7 @@ gem "mocha"
 gem 'validates_email_format_of'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'ckeditor'
+gem 'tinymce-rails'
 gem 'responders', '~> 2.0'
 #gem 'will_paginate', "3.0.pre2"
 gem 'json' ,'~> 1.8'
