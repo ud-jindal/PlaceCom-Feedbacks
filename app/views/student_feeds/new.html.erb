@@ -69,7 +69,7 @@
 	</div>
 	<div class="row" id="dropdrown">
 		<div class="col-xs-4"></div>
-		<span class="col-xs-4"><%= f.select :stream, ['Imtech', 'Mtech', 'Phd']%></span>
+		<span class="col-xs-4"><%= f.select :stream, ['iMtech', 'Mtech IT', 'Mtech esd', 'DigiSOC']%></span>
 		<div class="col-xs-4"></div>
 	</div>
 	<div class="row">
@@ -143,7 +143,7 @@
 						<i class="fa fa-graduation-cap fa-2x"></i>
 					</span>
 					<span class="form-fields col-xs-7">
-						<%= f.select :stream, ['Imtech', 'Mtech', 'Phd'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent',:required => true} %>	
+						<%= f.select :stream, ['iMtech', 'Mtech it', 'Mtech esd' ,'DigiSOC'] , {:prompt => 'Select Stream'}, { :class => 'sub-menu-parent',:required => true} %>	
 					</span>
 					<!--<div class="col-xs-1"></div>-->
 				</div>
