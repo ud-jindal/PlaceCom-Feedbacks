@@ -97,6 +97,7 @@ body{
 
 
 .panel-footer{
+	display:none;
 	margin-top:50px;
 	bottom: 0;
     height: 150px;
@@ -107,7 +108,7 @@ body{
 }
 
 #copyright{
-	line-height: 50px;
+	line-height: 25px;
 }
 
 /* End of Footer*/
@@ -158,6 +159,11 @@ body{
 
 #first-button{
 	margin-left:25px;
+	display:none;
+}
+
+#second-button{
+	display:none;
 }
 
 #form-img{
@@ -177,6 +183,7 @@ body{
 
 #last_mainpage_btn{
 	margin-bottom:179px;
+	display:none;
 }
 
 .break{
